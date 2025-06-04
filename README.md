@@ -133,7 +133,7 @@
 
     // إعداد EmailJS
     (function(){
-      emailjs.init("YOUR_USER_ID"); // ← ضعه من EmailJS
+      emailjs.init("securitddse.com@gmail.com"); // ← ضعه من EmailJS
     })();
 
     // إرسال النموذج

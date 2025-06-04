@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>صفحة الترحيب</title>
+  <style>  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      direction: rtl;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .glow-box {
+      position: absolute;
+      width: 12cm;
+      height: 6cm;
+      border: 2px solid #00ff00;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #00ff00;
+      font-size: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00;
+      animation: pulse 2s infinite ease-in-out;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .glow-box:hover {
+      transform: scale(1.1);
+    }
+
+    .glow-box video,
+    .glow-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-grow: 1;
+      border-radius: 6px;
+    }
+
+    /* الرقم الصغير تحت الفيديو/الصورة */
+    .number-label {
+      font-size: 1rem;
+      margin-top: 0.3rem;
+      color: #00ff00;
+      font-weight: bold;
+      user-select: none;
+    }
+
+    .top-left { top: 2cm; left: 2cm; }
+    .top-right { top: 2cm; right: 2cm; }
+    .bottom-left { bottom: 2cm; left: 2cm; }
+    .bottom-right { bottom: 2cm; right: 2cm; }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
+      }
+      50% {
+        box-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- خلفية الفيديو -->
+  <video autoplay muted loop class="video-background">
+    <source src="cyber security stock footage - free video cyber security background.mp4" type="video/mp4">
+    متصفحك لا يدعم وسم الفيديو.
+  </video>
+
+  <!-- الصناديق مع الأرقام -->
+  <div class="glow-box top-left">
+    <video autoplay muted loop>
+      <source src="ALGERIA map animation - Cinema 4D الجزائر.mp4" type="video/mp4">
+      متصفحك لا يدعم وسم الفيديو.
+    </video>
+    <div class="number-label">Positioning GPS </div>
+  </div>
+
+  <div class="glow-box top-right">
+    <img src="istockphoto-1145361636-612x612.png" alt="صورة الأمن">
+    <div class="number-label">Encrypt information</div>
+  </div>
+
+  <div class="glow-box bottom-left">
+    <img src="istockphoto-166419812-612x612.png" alt="بيانات شخصية">
+    <div class="number-label">Information security</div>
+  </div>
+
+  <div class="glow-box bottom-right">
+    <img src="istockphoto-1483363406-612x612.png" alt="كود ترمينال">
+    <div class="number-label">Intelligence developments</div>
+  </div>
+
+  <!-- صوت التفاعل -->
+  <audio id="hoverSound" src="انتقالات صوتية للمونتاج - Audio transitions for montage.mp3" preload="auto"></audio>
+
+<script>
+  // تشغيل الصوت مرة عند أول نقرة في الصفحة
+  const sound = document.getElementById('hoverSound');
+
+  function playOnClickOnce() {
+    sound.currentTime = 0;
+    sound.play();
+    document.body.removeEventListener('click', playOnClickOnce);
+  }
+
+  document.body.addEventListener('click', playOnClickOnce);
+
+  // إضافة حدث النقر للصناديق للانتقال إلى صفحات أخرى
+  document.querySelector('.top-left').addEventListener('click', () => {
+    window.location.href = 'page 1-2.html';
+  });
+
+  document.querySelector('.top-right').addEventListener('click', () => {
+    window.location.href = 'page2.html';
+  });
+
+  document.querySelector('.bottom-left').addEventListener('click', () => {
+    window.location.href = 'page3.html';
+  });
+
+  document.querySelector('.bottom-right').addEventListener('click', () => {
+    window.location.href = 'page4.html';
+  });
+</script>
+
+</body>
+</html>

@@ -1,9 +1,10 @@
-
+<!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>D-D-S-E</title>
+  <title>     D     -     D     -     S     -     E     </title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -52,6 +53,35 @@
       box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00;
     }
 
+    .contact-form {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      color: #00ff00;
+      width: 300px;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: black;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      border-radius: 5px;
+    }
+
+    .contact-form button:hover {
+      background-color: #00ff00;
+      color: black;
+    }
+
     @keyframes pulse {
       0%, 100% {
         box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
@@ -72,15 +102,25 @@
   <!-- زر الترحيب -->
   <a href="page 1.html" class="glow-button" id="glowBtn">Welcome to my world</a>
 
+  <!-- نموذج خدمة العملاء -->
+  <div class="contact-form">
+    <h3>خدمة العملاء</h3>
+    <form id="contactForm">
+      <input type="text" name="from_name" placeholder="الاسم" required>
+      <input type="email" name="reply_to" placeholder="البريد الإلكتروني" required>
+      <textarea name="message" rows="4" placeholder="رسالتك..." required></textarea>
+      <button type="submit">إرسال</button>
+    </form>
+  </div>
+
   <!-- الصوت -->
   <audio id="hoverSound" src="Binary Code - Interface Sound Effects  Sci-Fi Computer Beeps & Data Processing Sounds.mp3" preload="auto"></audio>
 
-  <!-- البرمجة -->
   <script>
+    // صوت التفاعل
     const btn = document.getElementById('glowBtn');
     const sound = document.getElementById('hoverSound');
 
-    // شغّل الصوت عند التحريك أو الضغط
     btn.addEventListener('mouseover', () => {
       sound.currentTime = 0;
       sound.play();
@@ -89,6 +129,23 @@
     btn.addEventListener('click', () => {
       sound.currentTime = 0;
       sound.play();
+    });
+
+    // إعداد EmailJS
+    (function(){
+      emailjs.init("YOUR_USER_ID"); // ← ضعه من EmailJS
+    })();
+
+    // إرسال النموذج
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+        .then(() => {
+          alert("تم الإرسال بنجاح!");
+          this.reset();
+        }, (error) => {
+          alert("حدث خطأ: " + JSON.stringify(error));
+        });
     });
   </script>
 </body>
